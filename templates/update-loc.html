@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MISA Location</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/update-loc.css">
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="input-group input-group-sm mb-0">
+                            <input type="text" class="form-control border border-info p-10 col-md-9 m-b-5 m-l-10 m-r-10"
+                                id="input-location" placeholder="Nhập Địa chỉ..." style="font-size: 16px;">
+
+                            <div id="suggested-item" class="'p-15 col-md-9 m-b-5 m-l-10 m-r-10">
+                            </div>
+
+                            <!-- <button type="button" id="get-info"
+                                class="btn btn-lg btn-block btn-info col-md-3 m-b-5 m-l-10 m-r-10"
+                                style="font-size: 16px;"> <i class="mdi mdi-search m-t-5" aria-hidden="true"></i><b>Lấy
+                                    thông tin</b></button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div class="card">
+                <div class="card-body ">
+                    <div class="row">
+                        <div id="in-out">
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-info">
+                                        <span class="input-group-text bg-info text-white" style="width:190px;">
+                                            <i class="mdi mdi-pencil m-r-10"></i>
+                                            <b>ID khu vực</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-info index-org-info"
+                                        id="location-id">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-info">
+                                        <span class="input-group-text bg-info text-white" style="width:190px;">
+                                            <i class="mdi mdi-factory m-r-10"></i>
+                                            <b>Loại</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-info index-org-info"
+                                        id="kind">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-info">
+                                        <span class="input-group-text bg-info text-white" style="width:190px;">
+                                            <i class="mdi mdi-account-alert m-r-10"></i>
+                                            <b>Vùng lãnh thổ</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-info index-org-info"
+                                        id="area-code">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-info">
+                                        <span class="input-group-text bg-info text-white" style="width:190px;">
+                                            <i class="mdi mdi-numeric m-r-10"></i>
+                                            <b>Tên khu vực</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-info index-org-info"
+                                        id="location-name">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-info">
+                                        <span class="input-group-text bg-info text-white" style="width:190px;">
+                                            <i class="mdi mdi-calendar-clock m-r-10"></i>
+                                            <b>Mã bưu chính</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-info index-org-info"
+                                        id="postal-code">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-info">
+                                        <span class="input-group-text bg-info text-white" style="width:190px;">
+                                            <i class="mdi mdi-google-maps m-r-10"></i>
+                                            <b>Mã khu vực</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-info index-org-info"
+                                        id="location-code">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-info">
+                                        <span class="input-group-text bg-info text-white" style="width:190px;">
+                                            <i class="mdi mdi-calendar-today m-r-10"></i>
+                                            <b>Mã ZIP</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-info index-org-info"
+                                        id="zip-code">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-cyan">
+                                        <span class="input-group-text bg-cyan text-white" style="width:190px;">
+                                            <i class="mdi mdi-format-list-bulleted-type m-r-10"></i>
+                                            <b>Mã quận huyện</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-cyan index-org-info"
+                                        id="district-id">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-cyan">
+                                        <span class="input-group-text bg-cyan text-white" style="width:190px;">
+                                            <i class="mdi mdi-group m-r-10"></i>
+                                            <b>Mã tỉnh thành</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-cyan index-org-info"
+                                        id="province-id">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-cyan">
+                                        <span class="input-group-text bg-cyan text-white" style="width:190px;">
+                                            <i class="mdi mdi-fax m-r-10"></i>
+                                            <b>Mã quốc gia</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-cyan index-org-info"
+                                        id="country-id">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend border border-cyan">
+                                        <span class="input-group-text bg-cyan text-white" style="width:190px;">
+                                            <i class="mdi mdi-web m-r-10"></i>
+                                            <b>Mã khu vực quản lý</b> </span>
+                                    </div>
+                                    <input type="text" class="form-control p-10 border border-cyan index-org-info"
+                                        id="parent-id">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <input disabled hidden id="id">
+
+                        <div class=" col-lg-3">
+                            <div class="input-group input-group-sm mb-3">
+                                <button type="button" id="update"
+                                    class="btn btn-lg btn-block btn-warning m-b-5 index-eu" style="font-size: 15px;"> <i
+                                        class="mdi mdi-search m-t-5" aria-hidden="true"></i><b>
+                                        Chỉnh sửa </b></button>
+                            </div>
+                        </div>
+
+                        <div class=" col-lg-3">
+                            <div class="input-group input-group-sm mb-3">
+                                <button type="button" id="create"
+                                    class="btn btn-lg btn-block btn-success m-b-5 index-eu" style="font-size: 15px;"> <i
+                                        class="mdi mdi-search m-t-5" aria-hidden="true"></i><b>
+                                        Thêm mới </b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="../static/update-loc.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+Restore stamina food
+Cabbage, Potato, Leek, Tomato
+Venison, Potato, Leek, Salt Pile
+
+keening 0006a13c
+auriel shi xx00284d
+spell br 00045f96
+bloodskal bl xx01aea4
+windshear 0006ea8b
+amu talos 000cc846
+Konahrik 00061cd6
+Ahzidal xx0240fe
+Zephyr xx00cfb6
+Masque of Clavicus Vile 000d2846
+Aetherial Crown xx00575a
+Ebony Mail 00052794
+Ring of Arcana xx01db9b
+Ring of Necromancy xx01db9a

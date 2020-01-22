@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="http://misa.com.vn/Portals/0/favicon.ico?ver=2015-05-23-110540-510" type="image/gif" sizes="16x16">
+</head>
+<body>
+<script src="static/jquery.min.js"></script>
+<script type="text/javascript" src="static/index.js"></script>
+<script src="static/bootstrap.min.js"></script>
+<link href="static/style.min.css" rel="stylesheet">
+<link href="static/index.css" rel="stylesheet">
+<link href="static/page.css" rel="stylesheet">
+<script src="static/popper.min.js"></script>
+<script src="static/perfect-scrollbar.jquery.min.js"></script>
+<script src="static/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="static/waves.js"></script>
+<!--Menu sidebar -->
+<script src="static/sidebarmenu.js"></script>
+<div>
+    <h2>Dữ liệu lấy trong db elasticsearch</h2>
+    <div class="input-group input-group-sm mb-0">
+        <input type="text" class="form-control border border-info p-10 col-md-9 m-b-5 m-l-10 m-r-10" id="inputCompanyName"
+               placeholder="Nhập địa chỉ" style="font-size: 16px;">
+
+        <div id="suggestedItem" class="'p-15 col-md-9 m-b-5 m-l-10 m-r-10" style="display: none;">
+        </div>
+
+        <button type="button" id="get-info" class="btn btn-lg btn-block btn-info col-md-3 m-b-5 m-l-10 m-r-10" style="font-size: 16px;"><i
+                class="mdi mdi-search m-t-5" aria-hidden="true"></i><b>Lấy Thông tin</b></button>
+
+
+    </div>
+    <div class="card">
+        <div class="card-body ">
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-cyan text-white" style="width:165px;"> <i class="mdi mdi-earth m-r-10"
+                                                                                                   style="font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Quốc Gia</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="country" disabled="">
+                <a id="country-dn" class="btn-dn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <h3 class="
+                        mdi mdi-arrow-down-drop-circle-outline text-dark m-t-5" aria-hidden="true">
+                    </h3>
+                </a>
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-success text-white" style="width:165px;"><i class="mdi mdi-city m-r-10"
+                                                                                                     style="font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Tỉnh/Thành phố</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="province" value="" disabled="">
+                <a id="province-dn" class="btn-dn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <h3 class="mdi mdi-arrow-down-drop-circle-outline text-dark m-t-5" aria-hidden="true"></h3>
+                </a>
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning text-white" style="width:165px;"><i class="mdi mdi-home-modern m-r-10"
+                                                                                                     style="font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Quận/Huyện</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="district" value="" disabled="">
+                <a id="district-dn" class="btn-dn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <h3 class="mdi mdi-arrow-down-drop-circle-outline text-dark m-t-5" aria-hidden="true"></h3>
+                </a>
+
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-danger text-white" style="width:165px;"><i class="mdi mdi-home m-r-10"
+                                                                                                    style="font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Xã/Phường</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="ward" value="" disabled="">
+                <a id="ward-dn" class="btn-dn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <h3 class="mdi mdi-arrow-down-drop-circle-outline text-dark m-t-5" aria-hidden="true"></h3>
+                </a>
+
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-info text-white" style="width:165px;"><i class="mdi mdi-map-marker-radius m-r-10"
+                                                                                                  style=" font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Chi tiết</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="location-detail">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h2>Truy cập API của trang web https://map.itrithuc.vn/</h2>
+    <div class="input-group input-group-sm mb-0">
+        <input type="text" class="form-control border border-info p-10 col-md-9 m-b-5 m-l-10 m-r-10" id="inputCompanyName2"
+               placeholder="Nhập địa chỉ" style="font-size: 16px;">
+
+        <div id="suggestedItem2" class="'p-15 col-md-9 m-b-5 m-l-10 m-r-10" style="display: none;">
+        </div>
+
+        <button type="button" id="get-info2" class="btn btn-lg btn-block btn-info col-md-3 m-b-5 m-l-10 m-r-10" style="font-size: 16px;"><i
+                class="mdi mdi-search m-t-5" aria-hidden="true"></i><b>Lấy Thông tin</b></button>
+
+
+    </div>
+    <div class="card">
+        <div class="card-body ">
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-cyan text-white" style="width:165px;"> <i class="mdi mdi-earth m-r-10"
+                                                                                                   style="font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Quốc Gia</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="country2" disabled="">
+                <a id="country-dn2" class="btn-dn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <h3 class="
+                        mdi mdi-arrow-down-drop-circle-outline text-dark m-t-5" aria-hidden="true">
+                    </h3>
+                </a>
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-success text-white" style="width:165px;"><i class="mdi mdi-city m-r-10"
+                                                                                                     style="font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Tỉnh/Thành phố</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="province2" value="" disabled="">
+                <a id="province-dn2" class="btn-dn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <h3 class="mdi mdi-arrow-down-drop-circle-outline text-dark m-t-5" aria-hidden="true"></h3>
+                </a>
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning text-white" style="width:165px;"><i class="mdi mdi-home-modern m-r-10"
+                                                                                                     style="font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Quận/Huyện</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="district2" value="" disabled="">
+                <a id="district-dn2" class="btn-dn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <h3 class="mdi mdi-arrow-down-drop-circle-outline text-dark m-t-5" aria-hidden="true"></h3>
+                </a>
+
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-danger text-white" style="width:165px;"><i class="mdi mdi-home m-r-10"
+                                                                                                    style="font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Xã/Phường</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="ward2" value="" disabled="">
+                <a id="ward-dn2" class="btn-dn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <h3 class="mdi mdi-arrow-down-drop-circle-outline text-dark m-t-5" aria-hidden="true"></h3>
+                </a>
+
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                        <span class="input-group-text bg-info text-white" style="width:165px;"><i class="mdi mdi-map-marker-radius m-r-10"
+                                                                                                  style=" font-size: 16px;"></i>
+                            <b style="font-size: 16px;">Chi tiết</b> </span>
+                </div>
+                <input type="text" class="form-control p-15" style="font-size: 16px;" id="location-detail2">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

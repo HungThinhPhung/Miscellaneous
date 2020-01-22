@@ -1,0 +1,55 @@
+function setAutocomplete() {
+            $(".tb").autocomplete({
+                minLength: 2,
+                source: function (request, response) {
+                    if ($("#ctl00_searchtype").val() != 1) return null;
+                    $.ajax({
+                        url: window.srv + "/GetSearch",
+                        data: "{ 'searchField': '" + request.term + "','h': '" + $("#ctl00_hdParameter").val() + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            if (data.d == null) {
+                                var msgSearchTimeOut = 'Phiên tìm kiếm của bạn đã kết thúc hoặc từ khóa tìm kiếm chưa chính xác. Hãy tải lại trang để tiếp tục!';
+                                if (confirm(msgSearchTimeOut)) {
+                                    location.reload();
+
+                                    return null;
+                                }
+                            }
+
+                            response($.map(data.d, function (item) {
+                                var label = '';
+                                if (item.Status != 'ACT') {
+                                    label = '<span style="color: red;">';
+                                }
+                                label = label + '<b>' + item.Name + '</b><br />';
+                                if (item.Enterprise_Gdt_Code != null) {
+                                    label = label + lblEntGdtCode + ': ' + item.Enterprise_Gdt_Code + '; ';
+                                }
+                                label = label + lblEntCode + ': ' + item.Enterprise_Code;
+                                if (item.Status != 'ACT') {
+                                    label = label + '</span>';
+                                }
+                                return {
+                                    label: label,
+                                    value: item.Id
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            //alert(textStatus);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $(".FldSearchId").val(ui.item.value);
+                    $(".FldSearchBtn").click();
+                    return false;
+                }
+                //                , focus: function (event, ui) {
+                //                    return false;
+                //                }
+            });

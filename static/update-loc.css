@@ -1,0 +1,30 @@
+#suggested-item{
+    background-color: white;
+    width: 72.5%;
+    z-index: 10;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 56px;
+
+    border: 1px solid #a5a5a5;
+    display: table;
+    box-shadow: 2px 3px 14px grey;
+
+}
+.table-item{
+    margin-left: 15px;
+    width: 100%;
+}
+.item-name{
+padding-left: 15px;
+}
+
+.row{
+    margin-left: 15px;
+}
+#input-location{
+    width: 500px;
+}
+.input-group .form-control{
+    width: 300px;
+}
