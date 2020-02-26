@@ -3,6 +3,7 @@ import requests
 from lxml import html
 from to_html import to_html
 import time
+import pickle
 
 
 def get_page(url):
@@ -14,6 +15,8 @@ def get_page(url):
     paragraphs = text_content.findall('p')
     for p in paragraphs:
         output_content += '<p>{}</p>'.format(p.text_content().strip())
+    if len(paragraphs) == 0:
+        output_content += '<p>{}</p>'.format(text_content.text_content().strip())
     next_chapter_url = html_page.get_element_by_id('next_chap').attrib['href']
     return output_title, output_content, next_chapter_url
 
@@ -27,10 +30,13 @@ def get_total_data(base_url):
         lst_title.append(output_title)
         lst_content.append(output_content)
         time.sleep(1)
+        print(next_url.split('-')[-1][:-1])
     return {'title': lst_title, 'content': lst_content}
 
 
 if __name__ == '__main__':
     base_url = example_url['tfull']
+    base_url = 'https://truyenfull.net/dau-la-dai-luc-2/chuong-1/'
     data = get_total_data(base_url)
-    to_html(data, 'LBCTLHHGD')
+    pickle.dump(data, open('data.p', 'wb'))
+    to_html(data, 'DLDL2')

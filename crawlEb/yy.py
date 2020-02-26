@@ -5,8 +5,8 @@ import time
 import pickle
 
 
-def get_data(b_name, chapter):
-    base_link = 'https://truyenyy.com/truyen/{}/chuong-{}.html'.format(b_name, chapter)
+def get_data(b_name, chapter, link=''):
+    base_link = 'https://truyenyy.com/truyen/{}/chuong-{}.html'.format(b_name, chapter) if link == '' else link
     response = requests.get(base_link, timeout=15)
     res_data = html.fromstring(response.content)
     body = res_data.body
@@ -32,23 +32,23 @@ def to_html(data, b_name):
 
 
 if __name__ == '__main__':
-    b_name = 'ngan-ho'
-    # data = {}
-    # title_lst = []
-    # content_lst = []
-    # try:
-    #     for i in range(1, 948):
-    #         print(i)
-    #         title, content = get_data(b_name, i)
-    #         title_lst.append(title)
-    #         content_lst.append(content)
-    #         time.sleep(1)
-    # except:
-    #     print()
-    # data['title'] = title_lst
-    # data['content'] = content_lst
-    # pickle.dump(data, open('ngan-ho.p', 'wb'))
-    # print()
+    b_name = 'dau-la-dai-luc-2'
+    data = {}
+    title_lst = []
+    content_lst = []
+    try:
+        for i in range(600, 1382):
+            print(i)
+            title, content = get_data(b_name, i)
+            title_lst.append(title)
+            content_lst.append(content)
+            time.sleep(1)
+    except:
+        print()
+    data['title'] = title_lst
+    data['content'] = content_lst
+    pickle.dump(data, open('dau-la-dai-luc-2.p', 'wb'))
+    print()
 
-    data = pickle.load(open('ngan-ho.p', 'rb'))
+    # data = pickle.load(open('dau-la-dai-luc-2.p', 'rb'))
     to_html(data, b_name)
