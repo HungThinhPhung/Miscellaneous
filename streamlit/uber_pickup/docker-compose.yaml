@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  uber_pickup:
+    build:
+      network: host
+      context: .
+      dockerfile: dockerfile
+    image: uber_pickup:0.1
+    container_name: uber_pickup
+    ports:
+      - 8601:8501
