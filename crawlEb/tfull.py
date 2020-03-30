@@ -36,7 +36,7 @@ def get_total_data(base_url):
 
 if __name__ == '__main__':
     base_url = example_url['tfull']
-    base_url = 'https://truyenfull.net/dau-la-dai-luc-2/chuong-1/'
+    base_url = 'https://truyenfull.net/than-y-thanh-thu/chuong-1/'
     data = get_total_data(base_url)
     pickle.dump(data, open('data.p', 'wb'))
-    to_html(data, 'DLDL2')
+    to_html(data, 'TYTT')

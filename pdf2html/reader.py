@@ -55,7 +55,7 @@ class PdfReader():
     @staticmethod
     def reformat_page(page_data: list):
         i = len(page_data) - 1
-        while page_data[i] == '\n' and not i == -1:
+        while not i == -1 and page_data[i] == '\n':
             i -= 1
         page_data = page_data[:i + 1]
 

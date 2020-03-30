@@ -1,0 +1,7 @@
+Describe data
+Pivot table
+Histogram
+
+For missing data
+Missing rate
+Number of missing records
