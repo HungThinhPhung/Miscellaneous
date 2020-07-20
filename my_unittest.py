@@ -1,6 +1,6 @@
 import json
 import os
-import unittest
+import my_unittest
 from os.path import isfile, join
 
 import requests
@@ -27,7 +27,7 @@ def query(file_path):
     return data
 
 
-class TestSequense(unittest.TestCase):
+class TestSequense(my_unittest.TestCase):
     pass
 
     def assert_dict(self, act, exp):
@@ -78,4 +78,4 @@ if __name__ == '__main__':
         test = test_generator(t)
         setattr(TestSequense, test_name, test)
 
-    unittest.main()
+    my_unittest.main()
