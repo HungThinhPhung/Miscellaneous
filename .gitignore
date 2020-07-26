@@ -130,6 +130,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-IDE
+# IDE
 .vscode/
 .idea/
+
+# Temp folder
+miscellanceous/

@@ -1,6 +1,5 @@
 import os
 import pickle
-import pandas as pd
 
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -12,20 +11,23 @@ class CustomException(Exception):
 
 
 class Constant:
+    # https://developers.google.com/sheets/api/guides/authorizing#OAuth2Authorizing
     SCOPES_READONLY = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+    SCOPES_READ_WRITE = 'https://www.googleapis.com/auth/spreadsheets',
+    SCOPES_FULL = 'https://www.googleapis.com/auth/drive'
 
 
 def read_g_sheet(spreadsheet_url: str, sheet_name: str, sheet_range: str):
     sheet_id = get_sheet_id(spreadsheet_url)
     data_range = '{}!{}'.format(sheet_name, sheet_range)
-    service = auth([Constant.SCOPES_READONLY])
+    service = auth([Constant.SCOPES_FULL])
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=sheet_id,
                                 range=data_range).execute()
     result_data = result.get('values', [])
     if not result_data:
         raise CustomException('No data found')
-    return pd.DataFrame(data=result_data[1:], columns=result_data[0])
+    return result_data
 
 
 def get_sheet_id(url: str):

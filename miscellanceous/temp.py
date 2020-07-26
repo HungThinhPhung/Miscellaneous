@@ -1,16 +1,26 @@
-import re
+import sys
 
-white_space_patt = re.compile('\s{2,}')
-def __pre_regex(text: str):
-    removed_character = ['-', '/', '\\', ',']
-    for rc in removed_character:
-        text = text.replace(rc, ' ')
-    text = re.sub(white_space_patt, ' ', text)
-    return text
 
-test = [
-    '12/13/1967',
-    'jan, 12 - 1487'
-]
-for t in test:
-    print(__pre_regex(t))
+def is_email(emai):
+    return '@' in emai
+
+
+def is_lock(lock):
+    return lock in ['lock', 'unlock']
+
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    email = None
+    lock=None
+    for a in args:
+        if is_email(a):
+            email = a
+            continue
+        if is_lock(a):
+            lock = a
+
+    if email is None:
+        print('Missing email')
+    if lock is None:
+        print('Missing lock')
