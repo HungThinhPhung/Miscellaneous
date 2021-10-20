@@ -1,0 +1,27 @@
+1. Spider:
+Là 1 class cần tự định nghĩa
+Scrapy sử dụng spider để crawl dữ liệu từ website
+Phải kế thừa class Spider
+Định nghĩa việc khởi tạo request, luồng chuyển trang và trích xuất dữ liệu
+Các thành phần:
+name: Tên định danh spider
+start_request(): Trả về iterable of Requests (yield scrapy.Request(...) hoặc return list of Requests), nơi spider bắt đầu thực hiện crawl
+parse(): Xử lý response trả về (như lưu lại hoặc tính toán). Chứa tham số response là 1 instance của scrapy.http.TextResponse, chứa content trang và các phương thức để xử lý
+* hàm parse() cũng thực hiện việc tìm URL mới để tạo request mới
+Chạy bằng cú pháp terminal: scrapy crawl <tên spider>
+Sử dụng -a để truyền tham số cho hàm start_request
+Scrapy lập lịch chạy từng đối tượng Request trả về từ hàm start_requests(), khởi tạo đối tượng Response để lưu phản hồi, và gọi hàm callback đồng thời truyền đối tượng Response vừa tạo vào callback như tham số
+
+Sử dụng yeild trong hàm parse để lấy ra các thông tin cần thiết
+Sử dụng -o <tên file> trong lệnh crawl để xuất thông tin trên ra file (nên dùng JSON Lines vì nó dạng stream)
+
+Trong parse() có thể yield Request để gọi tiếp theo link (callback chính nó (cần có điều kiện dừng) hoặc callback hàm khác)
+Có thể dùng hàm response.follow() thay cho Request (tự động tìm link trong thẻ a nếu truyền vào)
+
+2. Shell
+Là 1 shell của riêng scrapy để debug spider và thực hiện nhiều tác vụ khác
+Khởi chạy: scrapy shell <url>
+Gõ lệnh như python shell bình thường
+
+
+* Scrapy tự động bỏ request trùng (cấu hình trong DUPEFILTER_CLASS)
