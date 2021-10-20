@@ -7,7 +7,7 @@ output_folder = '../data/out'
 def handle_png(png_link, file_index):
     # Download png
     print('Download: {}'.format(png_link))
-    data = requests.get(png_link)
+    data = requests.get(png_link, timeout=10)
     content = data.content[8:]
     file = open('{}/{}.html'.format(output_folder, file_index), 'wb')
     file.write(content)
